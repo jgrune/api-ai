@@ -22,7 +22,7 @@ restService.post('/hook', function (req, res) {
     var processor = lookupIntent(req.body.result.metadata.intentId);
 
     processor(request);
-   
+
 });
 
 restService.listen((process.env.PORT || 5000), function () {
@@ -49,7 +49,7 @@ function sendSpeech () {
                     //speech = text;
                     //speech += 'action: ' + requestBody.result.action;
                 }
-                 
+
                 console.log('intent: ' + requestBody.result.metadata.intentId);
                 console.log('parameters: ' + JSON.stringify(requestBody.result.parameters));
             }
@@ -77,7 +77,7 @@ function sendSpeech () {
 
 
 function processExternalRequest(options, callback) {
-    
+
     console.log("processRequest");
 
     var extRequest;
@@ -124,16 +124,20 @@ function lookupIntent (intentId) {
       case "cd3c6dfb-1f5e-4357-a790-362f54c519be":
         return getTSAWaitTime;
       break;
-  
+
       case "704a34b0-3c3a-409b-be10-478660b71a76":
         return getUSAJobs;
+      break;
+
+      case "0f03908f-d37c-4809-a1fe-f6c2e4bc68e4":
+        return getUSAJobsFollowUp;
       break;
 
     }
 }
 
 function getTSAWaitTime (args) {
-   
+
     type = "http";
 
     var query = "ap=" + args.body.result.parameters['geo-airport'];
@@ -182,10 +186,10 @@ function getUSAJobs (args) {
     }
 
     if (args.body.result.parameters['organizationId']) {
-        var org = args.body.result.parameters['organizationId']; 
+        var org = args.body.result.parameters['organizationId'];
         query += "+with+" + org.replace(/ /g, "+");
     }
-    
+
     if (args.body.result.parameters['geo-city']) {
         var city = args.body.result.parameters['geo-city'];
         query += "+in+" + encodeURI(city);
@@ -198,7 +202,7 @@ function getUSAJobs (args) {
     if (args.body.result.parameters['tags']) {
         query += "&tags=" + args.body.result.parameters['tags'];
     }
-    
+
     query += "&size=" + "50";
 
 
@@ -236,4 +240,10 @@ function returnUSAJobs (results) {
     }
 
     sendSpeech();
+}
+
+function getUSAJobsFollowUp () {
+  speech = "This is a test";
+
+  sendSpeech();
 }
