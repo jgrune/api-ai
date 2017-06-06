@@ -248,7 +248,7 @@ function returnUSAJobs (results) {
 function returnUSAJobsFollowUp() {
   speech = '';
 
-  for (var i=0; i<=10; i++) {
+  for (var i=0; i<10; i++) {
     speech += jobList[i].position_title + " at the " + jobList[i].organization_name + "; ";
   }
 
