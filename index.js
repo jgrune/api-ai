@@ -31,7 +31,7 @@ restService.listen((process.env.PORT || 5000), function () {
 });
 
 
-function sendSpeech (cardItems) {
+function sendSpeech () {
 
      try {
 
@@ -61,13 +61,7 @@ function sendSpeech (cardItems) {
         return response.json({
             speech: speech,
             displayText: speech,
-            source: 'apiai-webhook-sample',
-            messages: [cardItems,
-                      {
-                        "type": 0,
-                        "speech": speech,
-                      }
-                    ]
+            source: 'apiai-webhook-sample'
         });
     } catch (err) {
         console.error("Can't process request", err);
@@ -251,17 +245,13 @@ function returnUSAJobs (results) {
     sendSpeech();
 }
 
-/*function returnUSAJobsFollowUp() {
+function returnUSAJobsFollowUp() {
   speech = '';
-  var cardItems = {
-                      "type": "carousel_card",
-                      "platform": "google",
-                      "items": [],
-                    },
-  var items = [];
+
+  var cardItems = [];
 
   for (var i = 0; i < 10; i++) {
-    items[i] = {
+    cardItems[i] = {
                     "optionInfo": {
                       "key": i+1,
                       "synonyms": []
@@ -271,11 +261,67 @@ function returnUSAJobs (results) {
                   };
     //speech += jobList[i].position_title + " at the " + jobList[i].organization_name + "; ";
   }
-  cardItems.items = items;
 
   //jobList.forEach(function(obj){
   //  speech += obj.position_title + " at the " + obj.organization_name + "; ";
   //})
 
-  sendSpeech(cardItems);
-}*/
+  sendSpeechCard(cardItems);
+}
+
+function sendSpeechCard (cardItems) {
+
+     try {
+
+        if (request.body) {
+            var requestBody = request.body;
+
+            if (requestBody.result) {
+                //speech = '';
+
+                if (requestBody.result.fulfillment) {
+                    console.log('fulfillment');
+                    //speech += ' ';
+                }
+
+                if (requestBody.result.action) {
+                    //speech = text;
+                    //speech += 'action: ' + requestBody.result.action;
+                }
+
+                console.log('intent: ' + requestBody.result.metadata.intentId);
+                console.log('parameters: ' + JSON.stringify(requestBody.result.parameters));
+            }
+        }
+
+        console.log('result: ', speech);
+
+        return response.json({
+            speech: speech,
+            displayText: speech,
+            source: 'apiai-webhook-sample',
+            messages: [
+                        {
+                          "type": "carousel_card",
+                          "platform": "google",
+                          "items": cardItems,
+                        },
+                        {
+                          "type": 0,
+                          "speech": speech,
+                        },
+                        cardItems
+                      ]
+        });
+    } catch (err) {
+        console.error("Can't process request", err);
+
+        return response.status(400).json({
+            status: {
+                code: 400,
+                errorType: err.message
+            }
+        });
+    }
+
+}
