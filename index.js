@@ -304,7 +304,7 @@ function sendSpeechCard (cardItems) {
                         {
                           "type": "carousel_card",
                           "platform": "google",
-                          "items": cardItems,
+                          "items": cardItems
                         },
                         {
                           "type": 0,
