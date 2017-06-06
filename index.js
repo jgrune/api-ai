@@ -245,10 +245,9 @@ function returnUSAJobs (results) {
     sendSpeech();
 }
 
+var cardItems = [];
 function returnUSAJobsFollowUp() {
   speech = '';
-
-  var cardItems = [];
 
   for (var i = 0; i < 10; i++) {
     cardItems[i] = {
@@ -300,34 +299,17 @@ function sendSpeechCard () {
             speech: speech,
             displayText: speech,
             source: 'apiai-webhook-sample',
-	      messages: [
-		{
-		  "type": "carousel_card",
-		  "platform": "google",
-		  "items": [
-		    {
-		      "optionInfo": {
-			"key": "1",
-			"synonyms": []
-		      },
-		      "title": "Test Card",
-		      "description": "This is the test card"
-		    },
-		    {
-		      "optionInfo": {
-			"key": "2",
-			"synonyms": []
-		      },
-		      "title": "Test Card 2",
-		      "description": "This is the test card 2"
-		    }
-		  ]
-		},
-		{
-		  "type": 0,
-		  "speech": "test"
-		}
-	      ]
+    	      messages: [
+                  		{
+                  		  "type": "carousel_card",
+                  		  "platform": "google",
+                  		  "items": cardItems
+                  		},
+                  		{
+                  		  "type": 0,
+                  		  "speech": "test"
+                  		}
+              	      ]
         });
     } catch (err) {
         console.error("Can't process request", err);
