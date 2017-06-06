@@ -61,7 +61,31 @@ function sendSpeech () {
         return response.json({
             speech: speech,
             displayText: speech,
-            source: 'apiai-webhook-sample'
+            source: 'apiai-webhook-sample',
+
+            messages: [
+                      {
+                        "type": "carousel_card",
+                        "platform": "google",
+                        "items": [
+                          {
+                            "optionInfo": {
+                              "key": "1",
+                              "synonyms": []
+                            },
+                            "title": "Test Card",
+                            "description": "This is the test card"
+                          },
+                          {
+                            "optionInfo": {
+                              "key": "2",
+                              "synonyms": []
+                            },
+                            "title": "Test Card 2",
+                            "description": "This is the test card 2"
+                          }
+                        ]
+                      }
         });
     } catch (err) {
         console.error("Can't process request", err);
