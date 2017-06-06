@@ -248,7 +248,7 @@ function returnUSAJobs (results) {
 function returnUSAJobsFollowUp() {
 
   jobList.forEach(function(obj){
-    speech += obj.position_title + " at the " + obj.organization_name;
+    speech += obj.position_title + " at the " + obj.organization_name \r\n;
   })
 
   sendSpeech();
