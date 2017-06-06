@@ -63,12 +63,7 @@ function sendSpeech (cardItems) {
             displayText: speech,
             source: 'apiai-webhook-sample',
 
-            messages: [
-                      {
-                        "type": "carousel_card",
-                        "platform": "google",
-                        "items": cardItems
-                      },
+            messages: [cardItems,
                       {
                         "type": 0,
                         "speech": speech,
@@ -259,10 +254,15 @@ function returnUSAJobs (results) {
 
 function returnUSAJobsFollowUp() {
   speech = '';
-  var cardItems = [];
+  var cardItems = {
+                      "type": "carousel_card",
+                      "platform": "google",
+                      "items": [],
+                    },
+  var items = [];
 
   for (var i = 0; i < 10; i++) {
-    cardItems[i] = {
+    items[i] = {
                     "optionInfo": {
                       "key": i+1,
                       "synonyms": []
@@ -272,8 +272,7 @@ function returnUSAJobsFollowUp() {
                   };
     //speech += jobList[i].position_title + " at the " + jobList[i].organization_name + "; ";
   }
-
-  console.log(cardItems);
+  cardItems.items = items;
 
   //jobList.forEach(function(obj){
   //  speech += obj.position_title + " at the " + obj.organization_name + "; ";
