@@ -250,13 +250,14 @@ function returnUSAJobsFollowUp() {
   speech = '';
 
   for (var i = 0; i < 10; i++) {
+    var num = i + 1;
     cardItems[i] = {
                     "optionInfo": {
-                      "key": i+1,
+                      "key": num,
                       "synonyms": []
                     },
-                    "title": JSON.stringify(jobList[i].position_title),
-                    "description": "This is at the " + JSON.stringify(jobList[i].organization_name)
+                    "title": jobList[i].position_title,
+                    "description": "This is at the " + jobList[i].organization_name
                   };
     //speech += jobList[i].position_title + " at the " + jobList[i].organization_name + "; ";
   }
