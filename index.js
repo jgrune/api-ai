@@ -245,7 +245,7 @@ function returnUSAJobs (results) {
     sendSpeech();
 }
 
-function returnUSAJobsFollowUp() {
+/*function returnUSAJobsFollowUp() {
   speech = '';
 
   var cardItems = [];
@@ -323,4 +323,4 @@ function sendSpeechCard (cardItems) {
         });
     }
 
-}
+}*/
