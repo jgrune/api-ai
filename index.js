@@ -31,7 +31,7 @@ restService.listen((process.env.PORT || 5000), function () {
 });
 
 
-function sendSpeech () {
+function sendSpeech (cardItems) {
 
      try {
 
@@ -63,34 +63,17 @@ function sendSpeech () {
             displayText: speech,
             source: 'apiai-webhook-sample',
 
-            /*messages: [
+            messages: [
                       {
                         "type": "carousel_card",
                         "platform": "google",
-                        "items": [
-                          {
-                            "optionInfo": {
-                              "key": "1",
-                              "synonyms": []
-                            },
-                            "title": "Test Card 1"
-                            "description": "This is the test card"
-                          },
-                          {
-                            "optionInfo": {
-                              "key": "2",
-                              "synonyms": []
-                            },
-                            "title": "Test Card 2",
-                            "description": "This is the test card 2"
-                          }
-                        ]
+                        "items": cardItems
                       },
                       {
                         "type": 0,
                         "speech": speech,
                       }
-                    ]*/
+                    ]
         });
     } catch (err) {
         console.error("Can't process request", err);
@@ -296,5 +279,5 @@ function returnUSAJobsFollowUp() {
   //  speech += obj.position_title + " at the " + obj.organization_name + "; ";
   //})
 
-  sendSpeech();
+  sendSpeech(cardItems);
 }
