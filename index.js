@@ -248,7 +248,7 @@ function returnUSAJobs (results) {
 
     jobList = jobs;
 
-    sendSpeech(cardItems);
+    sendSpeech();
 }
 
 /*function returnUSAJobsFollowUp() {
