@@ -85,7 +85,12 @@ function sendSpeech () {
                             "description": "This is the test card 2"
                           }
                         ]
+                      },
+                      {
+                        "type": 0,
+                        "speech": speech,
                       }
+                    ]
         });
     } catch (err) {
         console.error("Can't process request", err);
