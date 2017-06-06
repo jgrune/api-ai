@@ -203,7 +203,7 @@ function getUSAJobs (args) {
         query += "&tags=" + args.body.result.parameters['tags'];
     }
 
-    //query += "&size=" + "50";
+    query += "&size=" + "500";
 
 
     console.log("query: " + query);
