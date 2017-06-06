@@ -232,7 +232,7 @@ function returnUSAJobs (results) {
      console.log("job count: " + JSON.stringify(jobCount));
 
     if (jobCount > 1) {
-        speech = "The are " + jobCount + " jobs. Would you like to see the list? Test";
+        speech = "The are " + jobCount + " jobs. Would you like to see the list? " + jobs;
     } else if (jobCount > 0){
         speech = "There is " + jobCount + " job. Would you like to see it?";
     } else {
