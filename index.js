@@ -31,7 +31,7 @@ restService.listen((process.env.PORT || 5000), function () {
 });
 
 
-function sendSpeech () {
+function sendSpeech (cardItems) {
 
      try {
 
@@ -62,7 +62,7 @@ function sendSpeech () {
             speech: speech,
             displayText: speech,
             source: 'apiai-webhook-sample',
-            messages: [
+            messages: [cardItems,
                       {
                         "type": 0,
                         "speech": speech,
@@ -248,7 +248,13 @@ function returnUSAJobs (results) {
 
     jobList = jobs;
 
-    sendSpeech();
+    var cardItems = {
+                        "type": "carousel_card",
+                        "platform": "google",
+                        "items": [],
+                      };
+
+    sendSpeech(cardItems);
 }
 
 /*function returnUSAJobsFollowUp() {
