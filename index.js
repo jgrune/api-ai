@@ -73,7 +73,7 @@ function sendSpeech () {
                               "key": "1",
                               "synonyms": []
                             },
-                            "title": "Test Card",
+                            "title": "Test Card 1"
                             "description": "This is the test card"
                           },
                           {
@@ -276,10 +276,21 @@ function returnUSAJobs (results) {
 
 function returnUSAJobsFollowUp() {
   speech = '';
+  cardItems = '';
 
-  for (var i=0; i<10; i++) {
-    speech += jobList[i].position_title + " at the " + jobList[i].organization_name + "; ";
+  for (var i = 0; i < 10; i++) {
+    cardItems += {
+                    "optionInfo": {
+                      "key": i+1,
+                      "synonyms": []
+                    },
+                    "title": jobList[i].position_title
+                    "description": "This is at the " + jobList[i].organization_name
+                  },
+    //speech += jobList[i].position_title + " at the " + jobList[i].organization_name + "; ";
   }
+
+  console.log(cardItems);
 
   //jobList.forEach(function(obj){
   //  speech += obj.position_title + " at the " + obj.organization_name + "; ";
