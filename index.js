@@ -230,7 +230,10 @@ function returnUSAJobs (results) {
      var jobs = data;
      jobCount = jobs.length;
      console.log("job count: " + JSON.stringify(jobCount));
-     console.log(JSON.parse(results) + " this is the parsed JSON.")
+
+     jobs.forEach(function(obj){
+       console.log(obj.position_title + " " + obj.organization_name)
+     })
 
     if (jobCount > 1) {
         speech = "The are " + jobCount + " jobs. Would you like to see the list?";
@@ -245,6 +248,6 @@ function returnUSAJobs (results) {
 
 function getUSAJobsFollowUp () {
   speech = "This is a test";
-
+  
   sendSpeech();
 }
