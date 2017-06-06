@@ -63,12 +63,12 @@ function sendSpeech (cardItems) {
             displayText: speech,
             source: 'apiai-webhook-sample',
 
-            messages: [cardItems,
+            /*messages: [cardItems,
                       {
                         "type": 0,
                         "speech": speech,
                       }
-                    ]
+                    ]*/
         });
     } catch (err) {
         console.error("Can't process request", err);
@@ -252,7 +252,7 @@ function returnUSAJobs (results) {
     sendSpeech();
 }
 
-function returnUSAJobsFollowUp() {
+/*function returnUSAJobsFollowUp() {
   speech = '';
   var cardItems = {
                       "type": "carousel_card",
@@ -279,4 +279,4 @@ function returnUSAJobsFollowUp() {
   //})
 
   sendSpeech(cardItems);
-}
+}*/
