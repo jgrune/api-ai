@@ -233,7 +233,7 @@ function returnUSAJobs (results) {
      console.log("job count: " + JSON.stringify(jobCount));
 
     if (jobCount > 1) {
-        speech = "The are " + jobCount + " jobs. Would you like to see the list?";
+        speech = "There are " + jobCount + " jobs. Would you like to see the list?";
     } else if (jobCount > 0){
         speech = "There is " + jobCount + " job. Would you like to see it?";
     } else {
@@ -246,11 +246,15 @@ function returnUSAJobs (results) {
 }
 
 function returnUSAJobsFollowUp() {
+  speech = '';
 
-  jobList.forEach(function(obj){
-    speech += obj.position_title + " at the " + obj.organization_name + '\n';
-  })
+  for (var i=0; i<=10; i++) {
+    speech += jobList[i].position_title + " at the " + jobList[i].obj.organization_name + "; ";
+  }
+
+  //jobList.forEach(function(obj){
+  //  speech += obj.position_title + " at the " + obj.organization_name + "; ";
+  //})
 
   sendSpeech();
-	
 }
