@@ -248,12 +248,6 @@ function returnUSAJobs (results) {
 
     jobList = jobs;
 
-    var cardItems = {
-                        "type": "carousel_card",
-                        "platform": "google",
-                        "items": [],
-                      };
-
     sendSpeech(cardItems);
 }
 
