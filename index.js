@@ -31,7 +31,7 @@ restService.listen((process.env.PORT || 5000), function () {
 });
 
 
-function sendSpeech (cardItems) {
+function sendSpeech () {
 
      try {
 
@@ -62,13 +62,12 @@ function sendSpeech (cardItems) {
             speech: speech,
             displayText: speech,
             source: 'apiai-webhook-sample',
-
-            /*messages: [cardItems,
+            messages: [
                       {
                         "type": 0,
                         "speech": speech,
                       }
-                    ]*/
+                    ]
         });
     } catch (err) {
         console.error("Can't process request", err);
