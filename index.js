@@ -229,8 +229,8 @@ function returnUSAJobs (results) {
      var data = JSON.parse(results);
      var jobs = data;
      jobCount = jobs.length;
-     console.log(jobCount + 'this is the job count')
      console.log("job count: " + JSON.stringify(jobCount));
+     console.log(JSON.parse(results) + " this is the parsed JSON.")
 
     if (jobCount > 1) {
         speech = "The are " + jobCount + " jobs. Would you like to see the list?";
