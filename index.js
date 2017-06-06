@@ -309,8 +309,7 @@ function sendSpeechCard (cardItems) {
                         {
                           "type": 0,
                           "speech": speech,
-                        },
-                        cardItems
+                        }
                       ]
         });
     } catch (err) {
