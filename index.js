@@ -63,7 +63,7 @@ function sendSpeech () {
             displayText: speech,
             source: 'apiai-webhook-sample',
 
-            messages: [
+            /*messages: [
                       {
                         "type": "carousel_card",
                         "platform": "google",
@@ -90,7 +90,7 @@ function sendSpeech () {
                         "type": 0,
                         "speech": speech,
                       }
-                    ]
+                    ]*/
         });
     } catch (err) {
         console.error("Can't process request", err);
