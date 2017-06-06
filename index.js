@@ -229,10 +229,11 @@ function returnUSAJobs (results) {
      var data = JSON.parse(results);
      var jobs = data;
      jobCount = jobs.length;
+     console.log(jobCount + 'this is the job count')
      console.log("job count: " + JSON.stringify(jobCount));
 
     if (jobCount > 1) {
-        speech = "The are " + jobCount + " jobs. Would you like to see the list? " + jobs;
+        speech = "The are " + jobCount + " jobs. Would you like to see the list?";
     } else if (jobCount > 0){
         speech = "There is " + jobCount + " job. Would you like to see it?";
     } else {
