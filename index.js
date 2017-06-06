@@ -251,9 +251,11 @@ function returnUSAJobsFollowUp() {
 
   for (var i = 0; i < 10; i++) {
     var num = i + 1;
+    var n = num.toString();
+    
     cardItems[i] = {
                     "optionInfo": {
-                      "key": num,
+                      "key": n,
                       "synonyms": []
                     },
                     "title": jobList[i].position_title,
