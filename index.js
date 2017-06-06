@@ -255,11 +255,13 @@ function returnUSAJobsFollowUp() {
                       "key": i+1,
                       "synonyms": []
                     },
-                    "title": jobList[i].position_title,
-                    "description": "This is at the " + jobList[i].organization_name
+                    "title": JSON.stringify(jobList[i].position_title),
+                    "description": "This is at the " + JSON.stringify(jobList[i].organization_name)
                   };
     //speech += jobList[i].position_title + " at the " + jobList[i].organization_name + "; ";
   }
+
+  console.log(cardItems)
 
   //jobList.forEach(function(obj){
   //  speech += obj.position_title + " at the " + obj.organization_name + "; ";
