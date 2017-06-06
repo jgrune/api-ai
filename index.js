@@ -276,17 +276,17 @@ function returnUSAJobs (results) {
 
 function returnUSAJobsFollowUp() {
   speech = '';
-  cardItems = '';
+  cardItems = [];
 
   for (var i = 0; i < 10; i++) {
-    cardItems += {
+    cardItems[i] = {
                     "optionInfo": {
                       "key": i+1,
                       "synonyms": []
                     },
                     "title": jobList[i].position_title
                     "description": "This is at the " + jobList[i].organization_name
-                  },
+                  };
     //speech += jobList[i].position_title + " at the " + jobList[i].organization_name + "; ";
   }
 
