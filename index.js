@@ -203,7 +203,7 @@ function getUSAJobs (args) {
         query += "&tags=" + args.body.result.parameters['tags'];
     }
 
-    query += "&size=" + "50";
+    //query += "&size=" + "50";
 
 
     console.log("query: " + query);
@@ -248,6 +248,6 @@ function returnUSAJobs (results) {
 
 function getUSAJobsFollowUp () {
   speech = "This is a test";
-  
+
   sendSpeech();
 }
