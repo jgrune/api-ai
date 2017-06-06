@@ -8,6 +8,7 @@ const restService = express();
 
 var request, response, type;
 var speech = '';
+var jobList = '';
 
 
 restService.use(bodyParser.json());
@@ -130,7 +131,7 @@ function lookupIntent (intentId) {
       break;
 
       case "0f03908f-d37c-4809-a1fe-f6c2e4bc68e4":
-        return getUSAJobsFollowUp;
+        return returnUSAJobsFollowUp;
       break;
 
     }
@@ -203,7 +204,7 @@ function getUSAJobs (args) {
         query += "&tags=" + args.body.result.parameters['tags'];
     }
 
-    query += "&size=" + "500";
+    query += "&size=" + "50";
 
 
     console.log("query: " + query);
@@ -231,10 +232,6 @@ function returnUSAJobs (results) {
      jobCount = jobs.length;
      console.log("job count: " + JSON.stringify(jobCount));
 
-     jobs.forEach(function(obj){
-       console.log(obj.position_title + " " + obj.organization_name)
-     })
-
     if (jobCount > 1) {
         speech = "The are " + jobCount + " jobs. Would you like to see the list?";
     } else if (jobCount > 0){
@@ -243,11 +240,16 @@ function returnUSAJobs (results) {
         speech = "I'm sorry, no jobs matched the search.";
     }
 
+    jobList = jobs;
+
     sendSpeech();
 }
 
-function getUSAJobsFollowUp () {
-  speech = "This is a test";
+function returnUSAJobsFollowUp() {
+
+  jobsList.forEach(function(obj){
+    speech += obj.position_title + " at the " + obj.organization_name;
+  })
 
   sendSpeech();
 }
