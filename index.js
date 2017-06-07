@@ -246,6 +246,10 @@ function returnUSAJobs (results) {
 }
 
 function returnUSAJobsFollowUp() {
+  var message = {
+            		  "type": "carousel_card",
+            		  "platform": "google"
+            		};
   var cardItems = [];
   speech = 'Here is the list.';
 
@@ -263,10 +267,12 @@ function returnUSAJobsFollowUp() {
                   };
   }
 
-  sendSpeechCard(cardItems);
+  message.items = cardItems;
+
+  sendSpeechCard(message);
 }
 
-function sendSpeechCard (cardItems) {
+function sendSpeechCard (message) {
 
      try {
 
@@ -297,15 +303,10 @@ function sendSpeechCard (cardItems) {
             speech: speech,
             displayText: speech,
             source: 'apiai-webhook-sample',
-    	      messages: [
-                  		{
-                  		  "type": "carousel_card",
-                  		  "platform": "google",
-                  		  "items": cardItems
-                  		},
+    	      messages: [ message,
                   		{
                   		  "type": 0,
-                  		  "speech": "test"
+                  		  "speech": speech
                   		}
               	      ]
         });
