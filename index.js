@@ -304,9 +304,9 @@ function getPerDiemRate (args) {
 
   var options = {
     host: "inventory.data.gov",
-    port: '80',
+    port: '443',
     path: "/api/action/datastore_search?resource_id=8ea44bc4-22ba-4386-b84c-1494ab28964b&" + query,
-    method: 'POST',
+    method: 'GET',
     headers: {
       'Content-Type': 'application/json; charset=utf-8'
       }
