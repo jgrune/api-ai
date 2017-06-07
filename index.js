@@ -317,8 +317,12 @@ function getPerDiemRate (args) {
 }
 
 function returnPerDiemRate (results) {
-    console.log("results: " + JSON.stringify(results));
+     var data = JSON.parse(results);
+     var rate = data.result.records[1].meals
+     
+     speech = "The standard rate is " + rate;
 
+     sendSpeech();
 }
 
 
