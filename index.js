@@ -245,9 +245,9 @@ function returnUSAJobs (results) {
     sendSpeech();
 }
 
-var cardItems = [];
 function returnUSAJobsFollowUp() {
-  speech = '';
+  var cardItems = [];
+  speech = 'Here is the list.';
 
   for (var i = 0; i < 10; i++) {
     var num = i + 1;
@@ -261,19 +261,12 @@ function returnUSAJobsFollowUp() {
                     "title": "Job " + n + " " + jobList[i].position_title,
                     "description": "This is at the " + jobList[i].organization_name
                   };
-    //speech += jobList[i].position_title + " at the " + jobList[i].organization_name + "; ";
   }
 
-  console.log(cardItems)
-
-  //jobList.forEach(function(obj){
-  //  speech += obj.position_title + " at the " + obj.organization_name + "; ";
-  //})
-
-  sendSpeechCard();
+  sendSpeechCard(cardItems);
 }
 
-function sendSpeechCard () {
+function sendSpeechCard (cardItems) {
 
      try {
 
