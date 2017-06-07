@@ -31,7 +31,7 @@ restService.listen((process.env.PORT || 5000), function () {
 });
 
 
-function sendSpeech () {
+function sendSpeech (message) {
 
      try {
 
@@ -61,7 +61,13 @@ function sendSpeech () {
         return response.json({
             speech: speech,
             displayText: speech,
-            source: 'apiai-webhook-sample'
+            source: 'apiai-webhook-sample',
+            messages: [ message,
+                  		{
+                  		  "type": 0,
+                  		  "speech": speech
+                  		}
+              	      ]
         });
     } catch (err) {
         console.error("Can't process request", err);
@@ -269,10 +275,10 @@ function returnUSAJobsFollowUp() {
 
   message.items = cardItems;
 
-  sendSpeechCard(message);
+  sendSpeech(message);
 }
 
-function sendSpeechCard (message) {
+/*function sendSpeechCard (message) {
 
      try {
 
@@ -321,4 +327,4 @@ function sendSpeechCard (message) {
         });
     }
 
-}
+}*/
