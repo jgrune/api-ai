@@ -8,6 +8,8 @@ const restService = express();
 
 var request, response, type;
 var speech = '';
+var message = '';
+var jobList = '';
 
 
 restService.use(bodyParser.json());
@@ -57,11 +59,26 @@ function sendSpeech () {
 
         console.log('result: ', speech);
 
-        return response.json({
-            speech: speech,
-            displayText: speech,
-            source: 'apiai-webhook-sample'
-        });
+        if (message) {
+          return response.json({
+              speech: speech,
+              displayText: speech,
+              source: 'apiai-webhook-sample',
+              messages: [ message,
+                    		{
+                    		  "type": 0,
+                    		  "speech": speech
+                    		}
+                	      ]
+          });          
+        } else {
+          return response.json({
+              speech: speech,
+              displayText: speech,
+              source: 'apiai-webhook-sample'
+          });          
+        }
+
     } catch (err) {
         console.error("Can't process request", err);
 
@@ -130,7 +147,7 @@ function lookupIntent (intentId) {
       break;
 
       case "0f03908f-d37c-4809-a1fe-f6c2e4bc68e4":
-        return getUSAJobsFollowUp;
+        return returnUSAJobsFollowUp;
       break;
 
     }
@@ -172,6 +189,7 @@ function returnTSAWaitTime (results) {
         speech = "The wait time is " + waitTime + " minutes."
     }
 
+    message = '';
     sendSpeech();
 }
 
@@ -230,21 +248,44 @@ function returnUSAJobs (results) {
      var jobs = data;
      jobCount = jobs.length;
      console.log("job count: " + JSON.stringify(jobCount));
-     console.log(JSON.parse(results) + " this is the parsed JSON.")
 
     if (jobCount > 1) {
-        speech = "The are " + jobCount + " jobs. Would you like to see the list?";
+        speech = "There are " + jobCount + " jobs. Would you like to see the list?";
     } else if (jobCount > 0){
         speech = "There is " + jobCount + " job. Would you like to see it?";
     } else {
         speech = "I'm sorry, no jobs matched the search.";
     }
 
+    message = '';
+    jobList = jobs;
+
     sendSpeech();
 }
 
-function getUSAJobsFollowUp () {
-  speech = "This is a test";
+function returnUSAJobsFollowUp() {
+  message = {
+        		  "type": "carousel_card",
+        		  "platform": "google"
+        		};
+  speech = 'Here is the list.';
+  var cardItems = [];
+
+  for (var i = 0; i < 10; i++) {
+    var num = i + 1;
+    var n = num.toString();
+    
+    cardItems[i] = {
+                    "optionInfo": {
+                      "key": n,
+                      "synonyms": []
+                    },
+                    "title": "Job " + n + " " + jobList[i].position_title,
+                    "description": "This is at the " + jobList[i].organization_name
+                  };
+  }
+
+  message.items = cardItems;
 
   sendSpeech();
 }
