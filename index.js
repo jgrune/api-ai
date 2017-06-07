@@ -8,7 +8,7 @@ const restService = express();
 
 var request, response, type;
 var speech = '';
-var message = '';
+var message = {};
 var jobList = '';
 
 
@@ -180,6 +180,7 @@ function returnTSAWaitTime (results) {
         speech = "The wait time is " + waitTime + " minutes."
     }
 
+    message = {};
     sendSpeech();
 }
 
@@ -247,6 +248,7 @@ function returnUSAJobs (results) {
         speech = "I'm sorry, no jobs matched the search.";
     }
 
+    message = {};
     jobList = jobs;
 
     sendSpeech();
