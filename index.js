@@ -150,6 +150,10 @@ function lookupIntent (intentId) {
         return returnUSAJobsFollowUp;
       break;
 
+      case "58e2e463-45c6-4b9a-8925-aace6e349524":
+        return getPerDiemRate;
+      break;
+      
     }
 }
 
@@ -288,4 +292,26 @@ function returnUSAJobsFollowUp() {
   message.items = cardItems;
 
   sendSpeech();
+}
+
+function getPerDiemRate (args) {
+
+  console.log("parameters " + args.body.result.parameters);
+
+  /*type = "http";
+
+  var query = "filters=" + args.body.result.parameters['geo-airport'];
+
+  var options = {
+    host: "apps.tsa.dhs.gov",
+    port: '80',
+    path: "/MyTSAWebService/GetTSOWaitTimes.ashx?" + query + "&output=json",
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8'
+      }
+   };
+
+  processExternalRequest(options, returnTSAWaitTime);*/
+
 }
