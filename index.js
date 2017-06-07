@@ -298,20 +298,27 @@ function getPerDiemRate (args) {
 
   console.log("parameters " + JSON.stringify(args.body.result.parameters));
 
-  /*type = "http";
+  type = "http";
 
-  var query = "filters=" + args.body.result.parameters['geo-airport'];
+  var query = "filters=" + JSON.stringify(args.body.result.parameters);
 
   var options = {
-    host: "apps.tsa.dhs.gov",
+    host: "inventory.data.gov",
     port: '80',
-    path: "/MyTSAWebService/GetTSOWaitTimes.ashx?" + query + "&output=json",
+    path: "/api/action/datastore_search?resource_id=8ea44bc4-22ba-4386-b84c-1494ab28964b&" + query,
     method: 'POST',
     headers: {
       'Content-Type': 'application/json; charset=utf-8'
       }
    };
 
-  processExternalRequest(options, returnTSAWaitTime);*/
+  processExternalRequest(options, returnPerDiemRate);
 
 }
+
+function returnPerDiemRate (results) {
+    console.log("results: " + JSON.stringify(results));
+
+}
+
+
