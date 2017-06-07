@@ -298,7 +298,7 @@ function getPerDiemRate (args) {
 
   console.log("parameters " + JSON.stringify(args.body.result.parameters));
 
-  type = "http";
+  type = "https";
 
   var query = "filters=" + JSON.stringify(args.body.result.parameters);
 
