@@ -296,7 +296,7 @@ function returnUSAJobsFollowUp() {
 
 function getPerDiemRate (args) {
 
-  console.log("parameters " + args.body.result.parameters);
+  console.log("parameters " + JSON.stringify(args.body.result.parameters));
 
   /*type = "http";
 
