@@ -8,6 +8,7 @@ const restService = express();
 
 var request, response, type;
 var speech = '';
+var message = '';
 var jobList = '';
 
 
@@ -31,7 +32,7 @@ restService.listen((process.env.PORT || 5000), function () {
 });
 
 
-function sendSpeech (message) {
+function sendSpeech () {
 
      try {
 
@@ -252,12 +253,12 @@ function returnUSAJobs (results) {
 }
 
 function returnUSAJobsFollowUp() {
-  var message = {
-            		  "type": "carousel_card",
-            		  "platform": "google"
-            		};
-  var cardItems = [];
+  message = {
+        		  "type": "carousel_card",
+        		  "platform": "google"
+        		};
   speech = 'Here is the list.';
+  var cardItems = [];
 
   for (var i = 0; i < 10; i++) {
     var num = i + 1;
@@ -275,7 +276,7 @@ function returnUSAJobsFollowUp() {
 
   message.items = cardItems;
 
-  sendSpeech(message);
+  sendSpeech();
 }
 
 /*function sendSpeechCard (message) {
