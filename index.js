@@ -8,7 +8,7 @@ const restService = express();
 
 var request, response, type;
 var speech = '';
-var message = {};
+var message = '';
 var jobList = '';
 
 
@@ -59,17 +59,26 @@ function sendSpeech () {
 
         console.log('result: ', speech);
 
-        return response.json({
-            speech: speech,
-            displayText: speech,
-            source: 'apiai-webhook-sample',
-            messages: [ message,
-                  		{
-                  		  "type": 0,
-                  		  "speech": speech
-                  		}
-              	      ]
-        });
+        if (message) {
+          return response.json({
+              speech: speech,
+              displayText: speech,
+              source: 'apiai-webhook-sample',
+              messages: [ message,
+                    		{
+                    		  "type": 0,
+                    		  "speech": speech
+                    		}
+                	      ]
+          });          
+        } else {
+          return response.json({
+              speech: speech,
+              displayText: speech,
+              source: 'apiai-webhook-sample'
+          });          
+        }
+
     } catch (err) {
         console.error("Can't process request", err);
 
@@ -180,7 +189,7 @@ function returnTSAWaitTime (results) {
         speech = "The wait time is " + waitTime + " minutes."
     }
 
-    message = {};
+    message = '';
     sendSpeech();
 }
 
@@ -248,7 +257,7 @@ function returnUSAJobs (results) {
         speech = "I'm sorry, no jobs matched the search.";
     }
 
-    message = {};
+    message = '';
     jobList = jobs;
 
     sendSpeech();
@@ -280,54 +289,3 @@ function returnUSAJobsFollowUp() {
 
   sendSpeech();
 }
-
-/*function sendSpeechCard (message) {
-
-     try {
-
-        if (request.body) {
-            var requestBody = request.body;
-
-            if (requestBody.result) {
-                //speech = '';
-
-                if (requestBody.result.fulfillment) {
-                    console.log('fulfillment');
-                    //speech += ' ';
-                }
-
-                if (requestBody.result.action) {
-                    //speech = text;
-                    //speech += 'action: ' + requestBody.result.action;
-                }
-
-                console.log('intent: ' + requestBody.result.metadata.intentId);
-                console.log('parameters: ' + JSON.stringify(requestBody.result.parameters));
-            }
-        }
-
-        console.log('result: ', speech);
-
-        return response.json({
-            speech: speech,
-            displayText: speech,
-            source: 'apiai-webhook-sample',
-    	      messages: [ message,
-                  		{
-                  		  "type": 0,
-                  		  "speech": speech
-                  		}
-              	      ]
-        });
-    } catch (err) {
-        console.error("Can't process request", err);
-
-        return response.status(400).json({
-            status: {
-                code: 400,
-                errorType: err.message
-            }
-        });
-    }
-
-}*/
