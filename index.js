@@ -161,8 +161,8 @@ function getTSAWaitTime (args) {
 
     type = "http";
 
-    var query = "ap=" + args.body.result.parameters['geo-airport'];
-
+    var query = "ap=" + args.body.result.parameters['geo-airport'].IATA;
+    console.log(query);
     var options = {
       host: "apps.tsa.dhs.gov",
       port: '80',
@@ -178,7 +178,7 @@ function getTSAWaitTime (args) {
 
 
 function returnTSAWaitTime (results) {
-
+    
      var waitTime, text;
      console.log("results: " + JSON.stringify(results));
      var data = JSON.parse(results);
