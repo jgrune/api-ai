@@ -161,7 +161,7 @@ function getTSAWaitTime (args) {
 
     type = "http";
 
-    var query = "ap=" + args.body.result.parameters['geo-airport'];
+    var query = "ap=" + args.body.result.parameters['geo-airport'].IATA;
 
     var options = {
       host: "apps.tsa.dhs.gov",
