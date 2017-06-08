@@ -149,7 +149,7 @@ function lookupIntent (intentId) {
       case "0f03908f-d37c-4809-a1fe-f6c2e4bc68e4":
         return returnUSAJobsFollowUp;
       break;
-
+      
     }
 }
 
@@ -265,8 +265,9 @@ function returnUSAJobs (results) {
 
 function returnUSAJobsFollowUp() {
   message = {
-        		  "type": "carousel_card",
-        		  "platform": "google"
+        		  "type": 4,
+        		  "payload": {
+              }
         		};
   speech = 'Here is the list.';
   var cardItems = [];
@@ -276,16 +277,14 @@ function returnUSAJobsFollowUp() {
     var n = num.toString();
     
     cardItems[i] = {
-                    "optionInfo": {
-                      "key": n,
-                      "synonyms": []
-                    },
                     "title": "Job " + n + " " + jobList[i].position_title,
                     "description": "This is at the " + jobList[i].organization_name
-                  };
+                   };
   }
 
-  message.items = cardItems;
+  message.payload.appleGoogle = cardItems;
 
   sendSpeech();
 }
+
+
