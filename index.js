@@ -149,10 +149,6 @@ function lookupIntent (intentId) {
       case "0f03908f-d37c-4809-a1fe-f6c2e4bc68e4":
         return returnUSAJobsFollowUp;
       break;
-
-      case "58e2e463-45c6-4b9a-8925-aace6e349524":
-        return getPerDiemRate;
-      break;
       
     }
 }
