@@ -150,9 +150,6 @@ function lookupIntent (intentId) {
         return returnUSAJobsFollowUp;
       break;
 
-      case "58e2e463-45c6-4b9a-8925-aace6e349524":
-        return getPerDiemRate;
-      break;
     }
 }
 
@@ -289,35 +286,3 @@ function returnUSAJobsFollowUp() {
 
   sendSpeech();
 }
-
-function getPerDiemRate (args) {
-
-  console.log("parameters " + JSON.stringify(args.body.result.parameters));
-
-  type = "https";
-
-  var query = "filters=" + JSON.stringify(args.body.result.parameters);
-
-  var options = {
-    host: "inventory.data.gov",
-    port: '443',
-    path: "/api/action/datastore_search?resource_id=8ea44bc4-22ba-4386-b84c-1494ab28964b&" + query,
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json; charset=utf-8'
-      }
-   };
-
-  processExternalRequest(options, returnPerDiemRate);
-
-}
-
-function returnPerDiemRate (results) {
-     var data = JSON.parse(results);
-     var rate = data.result.records[0].Meals;
-     
-     speech = "The standard rate is " + rate;
-
-     sendSpeech();
-}
-
