@@ -293,12 +293,30 @@ function returnUSAJobsFollowUp() {
 
 function getPerDiemRate (args) {
 
-  console.log("parameters " + JSON.stringify(args.body.result.parameters));
-
   type = "https";
 
-  var query = "filters=" + JSON.stringify(args.body.result.parameters);
+  var filters = {};
 
+  if (args.body.result.parameters['FiscalYear']) {
+    filters.FiscalYear = args.body.result.parameters['FiscalYear'];
+  }
+
+  if (args.body.result.parameters['Zip']) {
+    filters.Zip = args.body.result.parameters['Zip'];
+  }
+
+  if (args.body.result.parameters['State']) {
+    filters.State = args.body.result.parameters['State'];
+  }
+
+  if (args.body.result.parameters['City']) {
+    filters.City = args.body.result.parameters['City'];
+  }
+  
+  var query = "filters=" + filters;
+
+  console.log(query);
+  
   var options = {
     host: "inventory.data.gov",
     port: '443',
