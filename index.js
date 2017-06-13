@@ -340,9 +340,7 @@ function returnPerDiemRate (results) {
      var mealRate = data.result.records[0].Meals;
      var lodgeRate = data.result.records[0].Jan;
      
-     speech = "The standard rate is meals is " + mealRate + " and the standard rate for lodging is " + lodgeRate + " .";
+     speech = "The standard rate for meals is " + mealRate + " and the standard rate for lodging is " + lodgeRate + " .";
 
      sendSpeech();
 }
-
-
