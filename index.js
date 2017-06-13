@@ -150,7 +150,7 @@ function lookupIntent (intentId) {
         return returnUSAJobsFollowUp;
       break;
 		    
-      case "58e2e463-45c6-4b9a-8925-aace6e349524":
+      case "41d6da0c-9e82-42d2-aba1-6eb4e92297a2":
         return getPerDiemRate;
       break;
     }
