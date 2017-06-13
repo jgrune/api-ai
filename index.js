@@ -11,7 +11,7 @@ var speech = '';
 var message = '';
 var jobList = '';
 
-
+console.log('test')
 restService.use(bodyParser.json());
 
 restService.post('/hook', function (req, res) {
