@@ -313,9 +313,9 @@ function getPerDiemRate (args) {
     filters.City = args.body.result.parameters['City'];
   }
   
-  var query = "filters=" + filters;
+  var query = "filters=" + JSON.stringify(filters);
 
-  console.log(query);
+  console.log(JSON.stringify(query));
   
   var options = {
     host: "inventory.data.gov",
