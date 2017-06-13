@@ -152,10 +152,10 @@ function getTSAWaitTime (args) {
 
     type = "http";
     if (!args.body.result.parameters['geo-airport'].IATA){
-          return res.status(400).json({
+          return response.status(400).json({
             status: {
                 code: 400,
-                errorType: err.message
+                errorType: "test error"
             }
         });
     } else {
