@@ -149,7 +149,10 @@ function lookupIntent (intentId) {
       case "0f03908f-d37c-4809-a1fe-f6c2e4bc68e4":
         return returnUSAJobsFollowUp;
       break;
-
+		    
+      case "58e2e463-45c6-4b9a-8925-aace6e349524":
+        return getPerDiemRate;
+      break;
     }
 }
 
@@ -285,4 +288,53 @@ function returnUSAJobsFollowUp() {
   message.payload.appleGoogle = cardItems;
 
   sendSpeech();
+}
+
+function getPerDiemRate (args) {
+
+  type = "https";
+
+  var filters = {};
+
+  if (args.body.result.parameters['FiscalYear']) {
+    filters.FiscalYear = args.body.result.parameters['FiscalYear'];
+  }
+
+  if (args.body.result.parameters['Zip']) {
+    filters.Zip = args.body.result.parameters['Zip'];
+  }
+
+  if (args.body.result.parameters['State']) {
+    filters.State = args.body.result.parameters['State'];
+  }
+    
+  var query = "filters=" + JSON.stringify(filters);
+
+  console.log(query);
+    
+  var options = {
+    host: "inventory.data.gov",
+    port: '443',
+    path: "/api/action/datastore_search?resource_id=8ea44bc4-22ba-4386-b84c-1494ab28964b&" + query,
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8'
+      }
+   };
+
+   processExternalRequest(options, returnPerDiemRate);
+
+}
+
+function returnPerDiemRate (results) {
+     var data = JSON.parse(results);
+     var mealRate = data.result.records[0].Meals;
+
+     if (data.result.records[0].City == "Standard Rate") {
+       speech = "The standard rate for meals is " + mealRate + ". For a more accurate rate, please ask by zip-code."
+     } else {
+       speech = "The rate for meals is " + mealRate +  " .";
+     }
+
+     sendSpeech();
 }
