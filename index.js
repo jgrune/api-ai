@@ -315,9 +315,10 @@ function getPerDiemRate (args) {
 
 function returnPerDiemRate (results) {
      var data = JSON.parse(results);
-     var rate = data.result.records[0].Meals;
+     var mealRate = data.result.records[0].Meals;
+     var lodgeRate = data.result.records[0].Jan;
      
-     speech = "The standard rate is " + rate;
+     speech = "The standard rate is meals is " + mealRate + " and the standard rate for lodging is " + lodgeRate + " .";
 
      sendSpeech();
 }
