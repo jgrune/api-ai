@@ -313,7 +313,7 @@ function getPerDiemRate (args) {
     filters.City = args.body.result.parameters['City'];
   }
   
-  var query = "filters=" + JSON.stringify(filters).replace(\ /g, "");
+  var query = "filters=" + JSON.stringify(filters).replace(/\\/g, "");
 
   console.log(JSON.stringify(query));
   
