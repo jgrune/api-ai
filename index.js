@@ -11,12 +11,9 @@ var speech = '';
 var message = '';
 var jobList = '';
 
-console.log('test')
 restService.use(bodyParser.json());
 
 restService.post('/hook', function (req, res) {
-
-    console.log('hook request ');
 
     request = req;
     response = res;
@@ -52,7 +49,6 @@ function sendSpeech () {
                     //speech += 'action: ' + requestBody.result.action;
                 }
 
-                console.log('intent: ' + requestBody.result.metadata.intentId);
                 console.log('parameters: ' + JSON.stringify(requestBody.result.parameters));
             }
         }
@@ -124,7 +120,7 @@ function processExternalRequest(options, callback) {
 		    });
 		    res.on('end', function() {
 	            callback(msg);
-	            console.log(JSON.parse(msg));
+	            //console.log(JSON.parse(msg));
 		    });
 	    });
 
@@ -149,7 +145,6 @@ function lookupIntent (intentId) {
       case "0f03908f-d37c-4809-a1fe-f6c2e4bc68e4":
         return returnUSAJobsFollowUp;
       break;
-      
     }
 }
 
