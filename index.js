@@ -299,23 +299,27 @@ function getPerDiemRate (args) {
 
   if (args.body.result.parameters['FiscalYear']) {
     filters.FiscalYear = args.body.result.parameters['FiscalYear'];
+    console.log(filters);
   }
 
   if (args.body.result.parameters['Zip']) {
     filters.Zip = args.body.result.parameters['Zip'];
+    console.log(filters);
   }
 
   if (args.body.result.parameters['State']) {
     filters.State = args.body.result.parameters['State'];
+    console.log(filters);
   }
 
   if (args.body.result.parameters['City']) {
     filters.City = args.body.result.parameters['City'];
+    console.log(filters);
   }
   
-  var query = "filters=" + JSON.stringify(filters).replace(/\\/g, "");
+  var query = "filters=" + JSON.stringify(filters);
 
-  console.log(JSON.stringify(query));
+  console.log(query);
   
   var options = {
     host: "inventory.data.gov",
