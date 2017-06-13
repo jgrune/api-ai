@@ -43,7 +43,7 @@ function sendSpeech () {
                 //speech = '';
 
                 if (requestBody.result.fulfillment) {
-                    console.log('fulfillment');
+                   // console.log('fulfillment');
                     //speech += ' ';
                 }
 
@@ -110,7 +110,7 @@ function processExternalRequest(options, callback) {
 	        });
 	        res.on('end', function() {
 	            callback(msg);
-	            console.log(JSON.parse(msg));
+	           // console.log(JSON.parse(msg));
 	        });
     });
 
@@ -176,10 +176,10 @@ function getTSAWaitTime (args) {
 function returnTSAWaitTime (results) {
     
      var waitTime, text;
-     console.log("results: " + JSON.stringify(results));
+    // console.log("results: " + JSON.stringify(results));
      var data = JSON.parse(results);
      var times = data.WaitTimes;
-     console.log("times: " + JSON.stringify(times));
+    // console.log("times: " + JSON.stringify(times));
      var latest = times[0];
      waitTime = latest.WaitTime;
 
