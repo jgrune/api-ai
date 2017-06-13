@@ -332,7 +332,7 @@
        var mealRate = data.result.records[0].Meals;
 
        if (data.result.records[0].City == "Standard Rate") {
-         speech = "The standard rate for meals is " + mealRate + " . For a more accurate rate, please ask by zip-code."
+         speech = "The standard rate for meals is " + mealRate + ". For a more accurate rate, please ask by zip-code."
        } else {
          speech = "The rate for meals is " + mealRate +  " .";
        }
