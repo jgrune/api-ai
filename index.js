@@ -151,8 +151,16 @@ function lookupIntent (intentId) {
 function getTSAWaitTime (args) {
 
     type = "http";
-
-    var query = "ap=" + args.body.result.parameters['geo-airport'];
+    if (!args.body.result.parameters['geo-airport'].IATA){
+          return res.status(400).json({
+            status: {
+                code: 400,
+                errorType: err.message
+            }
+        });
+    } else {
+        var query = "ap=" + args.body.result.parameters['geo-airport'].IATA;
+    }
     console.log(query);
     var options = {
       host: "apps.tsa.dhs.gov",
